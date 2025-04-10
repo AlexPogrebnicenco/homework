@@ -2,7 +2,7 @@
 
 namespace HomeworkProject 
 { 
-	internal class Animal 
+	public class Animal 
 	{
 		private string _name; // Приватное поле для хранения имени жиовтного
 
@@ -20,6 +20,12 @@ namespace HomeworkProject
 		public virtual void Speak() // Метод Speak, виртуальный - можно переопределить в наследниках
 		{
 			Console.WriteLine("The animal makes a sound.");  // Выводим фразу по умолчанию
+		}
+
+		// Overloading method Speack with parametr
+		public void Speak(string mood)
+		{
+            Console.WriteLine($"{Name} if feeling {mood}");
 		}
 
 		public void Eat()
