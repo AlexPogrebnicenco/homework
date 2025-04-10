@@ -10,8 +10,14 @@ namespace HomeworkProject
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("this is homework 3");
-            Console.ReadLine(); 
+            Console.WriteLine("Homework 3");
+
+            Animal animal = new Animal("Generic Animal");
+            animal.Speak();
+            animal.Eat();
+
+            Console.ReadLine();
+
         }
     }
 }
