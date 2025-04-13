@@ -9,7 +9,7 @@ namespace HomeworkProject
 {
     public class Zoo : IEnumerable<Animal> // Класс Zoo реализует интерфейс IEnumerable<Animal>
     {
-        private List<Animal> _animals = new List<Animal>(); // Список животных
+        private readonly List<Animal> _animals = new List<Animal>(); // Список животных
 
         // Метод для добавления животных в зоопарк
         public void AddAnimal(Animal animal)

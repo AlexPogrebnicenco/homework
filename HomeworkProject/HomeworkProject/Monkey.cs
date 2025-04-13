@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace HomeworkProject
 {
-    public class Monkey : Animal, ICloneable // Наследуется от Animal и реализует ICloneable
+    public class Monkey : Animal, ICloneable 
     {
-        public Monkey(string name) : base(name) // Конструктор передает имя в базовый класс
+        public Monkey(string name) : base(name) 
         {
         }
 
@@ -17,10 +17,9 @@ namespace HomeworkProject
             Console.WriteLine("Ooh oooh aah aaaah!");
         }
 
-        // Реализуем метод Clone из интерфейса ICloneable
         public object Clone() 
         {
-            return this.MemberwiseClone(); // Поверхностное клонирование
+            return this.MemberwiseClone(); 
         }
     }
 }

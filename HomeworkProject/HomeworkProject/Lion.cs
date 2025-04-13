@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace HomeworkProject
 {
-    public class Lion : Animal // Наследуем от класса Animal
+    public class Lion : Animal 
     {
-        public Lion(string name) : base(name)  // Конструктор, передающий имя в базовый класс
+        public Lion(string name) : base(name)  
         {
 
         }
 
-        // Переопределяем метод Speack 
         public override void Speak()
         {
-            Console.WriteLine("Roar!"); // Уникальый звук 
+            Console.WriteLine("Roar!");
         }
     }
 }

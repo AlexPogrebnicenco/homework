@@ -4,25 +4,24 @@ namespace HomeworkProject
 { 
 	public class Animal 
 	{
-		private string _name; // Приватное поле для хранения имени жиовтного
+		private string _name; 
 
-		public string Name	// Публичное свойство позволяет читать и записывать имя
+		public string Name	
 		{
-			get { return _name; }  // геттер - возвращает значение _name
-			set { _name = value; } // сеттер - присваивает значение переменной _name
+			get { return _name; }  
+			set { _name = value; } 
 		}
-
-		public Animal(string name) // Конструктор класса - вызывается при создании объекта Animal 
+		
+		public Animal(string name) 
 		{
 			_name = name;
 		}
 
-		public virtual void Speak() // Метод Speak, виртуальный - можно переопределить в наследниках
+		public virtual void Speak()
 		{
-			Console.WriteLine("The animal makes a sound.");  // Выводим фразу по умолчанию
+			Console.WriteLine("The animal makes a sound.");  
 		}
 
-		// Overloading method Speack with parametr
 		public void Speak(string mood)
 		{
             Console.WriteLine($"{Name} if feeling {mood}");
@@ -30,7 +29,7 @@ namespace HomeworkProject
 
 		public void Eat()
 		{
-			Console.WriteLine($"{Name} is eating."); // Используем имя животного в тексте
+			Console.WriteLine($"{Name} is eating."); 
 		}
 	}
 }
