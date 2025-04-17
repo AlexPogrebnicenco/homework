@@ -5,102 +5,124 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace HomeworkProject
 {
     public class Program
     {
+        enum Status
+        {
+            New,
+            InProgress,
+            Done,
+            Cancelled
+        }
+
         static void Main(string[] args)
         {
-           Plant grass = new Plant { Name = "Grass"};
-            Herbivore antelope = new Herbivore();
-            Predator<Herbivore> lion = new Predator<Herbivore>();
+            ListInitDemo();
+            ListResizeDemo();
+            tryEnum();
 
-            antelope.Eat(grass);
-            //antelope.Eat(lion);
-            lion.Eat(antelope);
-
-            Farmer farmer = new Farmer();
-            farmer.Feed(lion, antelope);
-            farmer.Feed(antelope, grass);
-
-            farmer.Feed<Herbivore, Plant>(antelope);
-
-            Mouse mouse = new Mouse();
-            //farmer.Feed<Mouse, Cheese>(mouse);
-            farmer.Feed<Mouse, Cheese>(mouse, new Cheese(""));
-
+            int newValue  = (int)Status.InProgress;
+            Console.WriteLine($"newValue: {newValue}");
+            Status sss = (Status)2;
+            int length = Enum.GetNames(typeof(Status)).Length;
+            Console.WriteLine( newValue > length  ? "There is no such STATUS" : $"Statuscode is  : {newValue}");
 
             Console.ReadLine();
-            
+
         }
 
-        public interface ILivingBeing
+        private static void ListInitDemo()
         {
-            string Name { get; set; }
-        }
+            List<string> names = new List<string>();
+            names.Add("John");
+            names.Add("Peter");
+            names.Add("Jack");
+            names.Add("George");
+            names.Add("Tom");
 
-        public class Cheese
-        {
-            public string Kind { get;}
-            public Cheese(string kind)
+            List<string> items = new List<string> {"Valera", "Sanea", "Vasea", "Petea", "Andrey"};
+            foreach (string item in names) 
             {
-                Kind = kind;
-            } 
-        }
-
-        public class Mouse : Animal<Cheese>
-        {
-        }
-
-        public class Plant : ILivingBeing
-        {
-            public string Name { get; set; }
-            public int Height { get; private set; }
-            public void Grow()
-            {
-                Console.WriteLine("Growing");
-                Height++;
-            }
-
-            public override string ToString()
-            {
-                return Name ?? "Unknown plant";
+                Console.WriteLine(item);
             }
         }
 
-        public class Animal<K> : ILivingBeing where K : class
+        private static void ListResizeDemo()
         {
-            public string Name { get; set;}
-            public int Weight { get; set; }
-            public void Eat(K food)
-            {
-                Console.WriteLine($"Eating {food}");
-            }
+            //List<int> listOfIntegers = new List<int>();
+            //int currentCapacity = listOfIntegers.Capacity;
+
+            //for (int i = 0; i < 1_000; i++)
+            //{
+            //    listOfIntegers.Add(i);
+            //    if (currentCapacity != listOfIntegers.Capacity)
+            //    {
+            //        currentCapacity = listOfIntegers.Capacity;
+            //        Console.WriteLine($"List1 capacity was increased to {currentCapacity}");
+            //    }    
+            //}
+
+            //List<int> listOfIntegers2 = new List<int>(1_000_000);
+            //int currentCapacity = listOfIntegers2.Capacity;
+            //for (int i = 0; i < 1_000_000; i++)
+            //{
+            //    listOfIntegers2.Add(i);
+            //    if (currentCapacity != listOfIntegers2.Capacity)
+            //    {
+            //        currentCapacity = listOfIntegers2.Capacity;
+            //        Console.WriteLine($"List2 capacity was increased to {currentCapacity}");
+            //    }
+            //}
+
+
+            //List<int> listOfIntegers3 = new List<int>();
+            //Console.WriteLine($"List3 capacity before AddRange = {listOfIntegers3.Capacity}");
+            //listOfIntegers3.AddRange(listOfIntegers2);
+            //Console.WriteLine($"List3 capacity after AddRange = {listOfIntegers3.Capacity}");
+            //listOfIntegers3.RemoveRange(0, listOfIntegers2.Count);
+            //Console.WriteLine($"List3 capacity after RemoveRange {listOfIntegers3.Capacity}");
+            //listOfIntegers3.TrimExcess();
+            //Console.WriteLine($"List3 capacity after TrimExcess = {listOfIntegers3.Capacity}" );
+
+            //var capitals = new Dictionary<string, string>()
+            //{
+            //    {"Romania", "Bucurest"},
+            //    {"Ukrain", "Kiev"},
+            //    {"Russia", "Moscow"}
+            //};
+            //capitals.Add("France", "Paris");
+            //capitals.Add("Germany", "Berlin");
+            //capitals.Add("Moldova", "Chisinau");
+
+            //foreach (var pair in capitals)
+            //{
+            //    Console.WriteLine($"Country: {pair.Key}   Capital: {pair.Value}");
+            //}
         }
 
-        public class Herbivore : Animal<Plant>
+        public static void tryEnum() 
         {
-        }
+            Status taskStatus = Status.InProgress;
 
-        public class Predator<K> : Animal<K> where K : Herbivore
-        { 
-        }
-
-        public class Farmer
-        {
-            public void Feed<T, K>(T animal, K food) where T : Animal<K> where K: class
+            switch (taskStatus)
             {
-                Console.WriteLine($"Feeding {animal} with {food}");
+                case Status.New:
+                    Console.WriteLine("Task not started.");
+                    break;
+                case Status.InProgress:
+                    Console.WriteLine("Task is underway.");
+                    break;
+                case Status.Done:
+                    Console.WriteLine("Task completed!");
+                    break;
+                case Status.Cancelled:
+                    Console.WriteLine("Task was cancelled.");
+                    break;
             }
-
-            public void Feed<T, K>(T animal) where T : Animal<K> where K : class, new()
-            {
-                Console.WriteLine("Preparing the food");
-                K food = new K();
-                Console.WriteLine($"Feeding {animal} with {food}");
-
-            }
-        }
+         }
     }
 }
