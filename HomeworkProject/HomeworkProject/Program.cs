@@ -6,123 +6,61 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using HomeworkProject.Models;
+using HomeworkProject.Interfaces;
+using HomeworkProject.Repositories;
 
 namespace HomeworkProject
 {
     public class Program
     {
-        enum Status
+        private static IRepository<User> _userRepo = new InMemoryRepository<User>();
+        public static void Main(string[] args)
         {
-            New,
-            InProgress,
-            Done,
-            Cancelled
+            AddUsers();
+            PrintUsers("All users:");
+
+            UpdateUser(1, "Alex - Updated");
+            PrintUsers("All users after update:");
+
+            DeleteUser(1);
+            PrintUsers("All users after delete: ");
         }
 
-        static void Main(string[] args)
+        public static void AddUsers()
         {
-            ListInitDemo();
-            ListResizeDemo();
-            tryEnum();
-
-            int newValue  = (int)Status.InProgress;
-            Console.WriteLine($"newValue: {newValue}");
-            Status sss = (Status)2;
-            int length = Enum.GetNames(typeof(Status)).Length;
-            Console.WriteLine( newValue > length  ? "There is no such STATUS" : $"Statuscode is  : {newValue}");
-
-            Console.ReadLine();
-
+            _userRepo.Add(new User { Name = "Alexandru Pogrebnicenco", Email = "alexandru.pogrebnicenco.intern@gmail.com" });
+            _userRepo.Add(new User { Name = "Mihail Izmana", Email = "mihail.izmana@amdaris.com" });
         }
 
-        private static void ListInitDemo()
+        private static void PrintUsers(string title)
         {
-            List<string> names = new List<string>();
-            names.Add("John");
-            names.Add("Peter");
-            names.Add("Jack");
-            names.Add("George");
-            names.Add("Tom");
-
-            List<string> items = new List<string> {"Valera", "Sanea", "Vasea", "Petea", "Andrey"};
-            foreach (string item in names) 
+            Console.WriteLine(title);
+            foreach (var user in _userRepo.FindAll())
             {
-                Console.WriteLine(item);
+                Console.WriteLine($"Id: {user.Id} /  Name: {user.Name} / Email: {user.Email}");
+            }
+            Console.WriteLine();
+        }
+
+        private static void UpdateUser(int id, string newName)
+        {
+            var user = _userRepo.GetById(id);
+            if (user != null) 
+            {
+                user.Name = newName;
+                _userRepo.Update(user);
             }
         }
 
-        private static void ListResizeDemo()
+        private static void DeleteUser(int id)
         {
-            //List<int> listOfIntegers = new List<int>();
-            //int currentCapacity = listOfIntegers.Capacity;
-
-            //for (int i = 0; i < 1_000; i++)
-            //{
-            //    listOfIntegers.Add(i);
-            //    if (currentCapacity != listOfIntegers.Capacity)
-            //    {
-            //        currentCapacity = listOfIntegers.Capacity;
-            //        Console.WriteLine($"List1 capacity was increased to {currentCapacity}");
-            //    }    
-            //}
-
-            //List<int> listOfIntegers2 = new List<int>(1_000_000);
-            //int currentCapacity = listOfIntegers2.Capacity;
-            //for (int i = 0; i < 1_000_000; i++)
-            //{
-            //    listOfIntegers2.Add(i);
-            //    if (currentCapacity != listOfIntegers2.Capacity)
-            //    {
-            //        currentCapacity = listOfIntegers2.Capacity;
-            //        Console.WriteLine($"List2 capacity was increased to {currentCapacity}");
-            //    }
-            //}
-
-
-            //List<int> listOfIntegers3 = new List<int>();
-            //Console.WriteLine($"List3 capacity before AddRange = {listOfIntegers3.Capacity}");
-            //listOfIntegers3.AddRange(listOfIntegers2);
-            //Console.WriteLine($"List3 capacity after AddRange = {listOfIntegers3.Capacity}");
-            //listOfIntegers3.RemoveRange(0, listOfIntegers2.Count);
-            //Console.WriteLine($"List3 capacity after RemoveRange {listOfIntegers3.Capacity}");
-            //listOfIntegers3.TrimExcess();
-            //Console.WriteLine($"List3 capacity after TrimExcess = {listOfIntegers3.Capacity}" );
-
-            //var capitals = new Dictionary<string, string>()
-            //{
-            //    {"Romania", "Bucurest"},
-            //    {"Ukrain", "Kiev"},
-            //    {"Russia", "Moscow"}
-            //};
-            //capitals.Add("France", "Paris");
-            //capitals.Add("Germany", "Berlin");
-            //capitals.Add("Moldova", "Chisinau");
-
-            //foreach (var pair in capitals)
-            //{
-            //    Console.WriteLine($"Country: {pair.Key}   Capital: {pair.Value}");
-            //}
+            var user = _userRepo.GetById(id);
+            if (user != null)
+            {
+                _userRepo.Delete(user);
+            }
         }
 
-        public static void tryEnum() 
-        {
-            Status taskStatus = Status.InProgress;
-
-            switch (taskStatus)
-            {
-                case Status.New:
-                    Console.WriteLine("Task not started.");
-                    break;
-                case Status.InProgress:
-                    Console.WriteLine("Task is underway.");
-                    break;
-                case Status.Done:
-                    Console.WriteLine("Task completed!");
-                    break;
-                case Status.Cancelled:
-                    Console.WriteLine("Task was cancelled.");
-                    break;
-            }
-         }
     }
 }
