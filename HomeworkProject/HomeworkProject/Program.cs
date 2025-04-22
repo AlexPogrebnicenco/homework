@@ -8,14 +8,15 @@ namespace HomeworkProject
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-          
-        }
+            Console.Write("Write your email address: "); 
+            string email = Console.ReadLine();
 
-        public static async Task SendEmailAsync() 
-        {
-            Console.WriteLine("first step");
+            await EmailService.SendEmailAsync(email);
+
+            Console.WriteLine("Press any key to exit ...");
+            Console.ReadKey();
         }
     }
 }

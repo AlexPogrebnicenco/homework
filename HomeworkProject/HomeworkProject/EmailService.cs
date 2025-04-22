@@ -23,7 +23,7 @@ namespace HomeworkProject
 
                     using (SmtpClient client = new SmtpClient("smtp.gmail.com", 587))
                     {
-                        client.Credentials = new NetworkCredential("pogrebnicencoalex@gmail.com", "okxemqvreysyfudg");
+                        client.Credentials = new NetworkCredential("pogrebnicencoalex@gmail.com", "*******");
                         client.EnableSsl = true;
                         client.Send(message);
                     }
