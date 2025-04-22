@@ -10,8 +10,12 @@ namespace HomeworkProject
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("hw11 has been created");
-            Console.ReadLine(); 
+          
+        }
+
+        public static async Task SendEmailAsync() 
+        {
+            Console.WriteLine("first step");
         }
     }
 }
