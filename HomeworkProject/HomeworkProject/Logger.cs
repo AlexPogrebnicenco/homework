@@ -15,9 +15,16 @@ namespace HomeworkProject
             string logFileName = $"Logs_{date}.txt";
             string logMessage = $"{DateTime.Now:G} / {methodName} / {(isSuccess ? "success" : "failure")}";
 
-            using (StreamWriter write = new StreamWriter(logFileName, append: true, encoding: Encoding.UTF8)) 
+            try
             {
-                await write.WriteLineAsync(logMessage);
+                using (StreamWriter write = new StreamWriter(logFileName, true, Encoding.UTF8))
+                {
+                    await write.WriteLineAsync(logMessage);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Houston we have a problem: " + ex.Message);
             }
         }
     }
