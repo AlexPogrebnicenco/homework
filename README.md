@@ -55,10 +55,26 @@ This is a console application that refactors the original `Speaker` class from [
 
 ##  Project Structure
 
-HomeworkProject/ ??? Models/ ? ??? Speaker.cs ? ??? Session.cs ? ??? WebBrowser.cs ??? Services/ 
-? ??? SpeakerValidator.cs ? ??? SessionApprovalService.cs ? ??? RegistrationFeeCalculator.cs ???
-Interfaces/ ? ??? IRepository.cs ? ??? ISpeakerValidator.cs ??? Exceptions/ ? ???
-NoSessionApprovedException.cs ? ??? SpeakerRequirementsNotMetException.cs ??? Program.cs
+```
+HomeworkProject/
+├── Models/
+│   ├── Speaker.cs
+│   ├── Session.cs
+│   └── WebBrowser.cs
+├── Services/
+│   ├── SpeakerValidator.cs
+│   ├── SessionApprovalService.cs
+│   └── RegistrationFeeCalculator.cs
+├── Interfaces/
+│   ├── IRepository.cs
+│   └── ISpeakerValidator.cs
+├── Exceptions/
+│   ├── NoSessionApprovedException.cs
+│   └── SpeakerRequirementsNotMetException.cs
+├── Program.cs
+```
+
+
 
 ---
 
