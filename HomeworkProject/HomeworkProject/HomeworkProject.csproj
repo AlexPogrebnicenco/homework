@@ -43,11 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\NoSessionApprovedException.cs" />
+    <Compile Include="Exceptions\SpeakerRequirementsNotMetException.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\ISpeakerValidator.cs" />
+    <Compile Include="Models\Session.cs" />
+    <Compile Include="Models\Speaker.cs" />
+    <Compile Include="Models\WebBrowser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\RegistrationFeeCalculator.cs" />
+    <Compile Include="Services\SessionApprovalService.cs" />
+    <Compile Include="Services\SpeakerValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="README.md" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
