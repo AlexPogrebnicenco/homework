@@ -6,12 +6,27 @@ using System.Threading.Tasks;
 
 namespace HomeworkProject
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("hw14 has been created");
-            Console.ReadLine(); 
+            List<Employee> employees = new List<Employee>()
+        {
+            new Employee {Name = "Alex", Salary = 900},
+            new Employee {Name = "Ivan", Salary = 1200},
+            new Employee {Name = "Max", Salary = 4000}
+        };
+
+            var builder = new EmployeeReportBuilder(employees);
+            var director = new EmployeeReportDirector(builder);
+
+            director.Build();
+
+            var report = builder.GetReport();
+
+            Console.WriteLine(report);
+            Console.ReadKey();
+
         }
     }
 }
