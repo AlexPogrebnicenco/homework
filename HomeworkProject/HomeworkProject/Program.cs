@@ -10,7 +10,7 @@ namespace HomeworkProject
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("hw14 has been created");
+            Console.WriteLine("hw14-homework has been created");
             Console.ReadLine(); 
         }
     }
