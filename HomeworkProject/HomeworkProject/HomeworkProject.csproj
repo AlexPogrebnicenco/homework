@@ -43,6 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\CoffeeBuilder.cs" />
+    <Compile Include="Builders\CoffeeDirector.cs" />
+    <Compile Include="Builders\CoffeeExtensions.cs" />
+    <Compile Include="Builders\ICoffeeBuilder.cs" />
+    <Compile Include="Models\Coffee.cs" />
+    <Compile Include="Models\CoffeeType.cs" />
+    <Compile Include="Models\MilkType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
