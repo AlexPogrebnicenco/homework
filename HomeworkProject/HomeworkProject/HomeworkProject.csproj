@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -43,11 +44,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\ITextComponent.cs" />
+    <Compile Include="Components\PlainText.cs" />
+    <Compile Include="Decorators\BoldDecorator.cs" />
+    <Compile Include="Decorators\ColorDecorator.cs" />
+    <Compile Include="Decorators\ItalicDecorator.cs" />
+    <Compile Include="Decorators\TextDecorator.cs" />
+    <Compile Include="Decorators\UnderlineDecorator.cs" />
+    <Compile Include="Facade\TextFormatterFacade.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ITextFormatterManager.cs" />
+    <Compile Include="Services\TextFormatterManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
